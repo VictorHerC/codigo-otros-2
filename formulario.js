@@ -1,8 +1,10 @@
-var formulario = document.querySelector("#form")
-
+var formulario = document.querySelector("form")
+var listaInvitados = document.createElement("div")
+listaInvitados.id = "lista-de-invitados"
+document.body.appendChild(listaInvitados)
 formulario.onsubmit = function(e) {
 
-  e.prevent();
+  e.preventDefault();
   
   var n = formulario.elements[0]
   var e = formulario.elements[1]
@@ -18,9 +20,17 @@ formulario.onsubmit = function(e) {
 
   if (nombre.length === 0) {
     n.classList.add("error")
+    var errorNombre = document.createElement("p");
+    errorNombre.textContent = "El nombre es requerido";
+    errorNombre.classList.add("error-message");
+    document.body.appendChild(errorNombre);
   }
   if (edad < 18 || edad > 120) {
     e.classList.add("error")
+    var errorEdad = document.createElement("p");
+    errorEdad.textContent = "La edad es inválida";
+    errorEdad.classList.add("error-message");
+    document.body.appendChild(errorEdad);
   }
 
 if (nombre.length > 0 
@@ -55,7 +65,7 @@ function agregarInvitado(nombre, edad, nacionalidad) {
 var lista = document.getElementById("lista-de-invitados")
 
 var elementoLista = document.createElement("div")
-elementoLista.classList.added("elemento-lista")
+elementoLista.classList.add("elemento-lista")
 lista.appendChild(elementoLista)
 
 var spanNombre = document.createElement("span")
